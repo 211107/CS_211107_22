@@ -1,16 +1,16 @@
-const { Pool } = require('pg');
-const config = require('../config.js');
+import { Pool } from 'pg';
+import { db } from '../config.js';
 
 async function getConnection() {
     const pool = new Pool({
-        user: config.db.user,
-        host: config.db.host,
-        database: config.db.database,
-        password: config.db.password,
-        port: config.db.port,
+        user: db.user,
+        host: db.host,
+        database: db.database,
+        password: db.password,
+        port: db.port,
     });
     await pool.connect();
     return pool;
 }
 
-module.exports = { getConnection };
+export default { getConnection };

@@ -1,9 +1,9 @@
-const express = require('express');
-const response = require('../../../network/response');
-const { getConnection } = require('../../../model/db');
-const { request } = require('express');
+import { Router } from 'express';
+import { success } from '../../../network/response';
+import { getConnection } from '../../../model/db.js';
+import { request } from 'express';
 
-const router = express.Router();
+const router = Router();
 
 router.get('/success1', async function (req, res) {
     const client = await getConnection();
@@ -13,14 +13,13 @@ router.get('/success1', async function (req, res) {
     }
 
     client.query(query_request)
-        .then(r => { response.success(req, res, r, 200); })
-        .catch(e => { response.success(req, res, e.stack, 400); })
+        .then(r => { success(req, res, r, 200); })
+        .catch(e => { success(req, res, e.stack, 400); })
 
 
 })
 
 router.post('/register', async function (req, res) {
-    //Realizar conexion a DB
     const client = await getConnection();
 
     let username = req.query.username;
@@ -34,8 +33,8 @@ router.post('/register', async function (req, res) {
     };
 
     client.query(query_request)
-        .then(r => { response.success(req, res, r, 200) })
-        .catch(e => { response.success(req, res, e.detail, 200) })
+        .then(r => { success(req, res, r, 200) })
+        .catch(e => { success(req, res, e.detail, 200) })
 
 
 });
@@ -48,10 +47,10 @@ router.delete('/delete', async function (req, res) {
     };
 
     client.query(query_request)
-        .then(r => { response.success(req, res, r, 200) })
-        .catch(e => { response.success(req, res, e.detail, 200) })
+        .then(r => { success(req, res, r, 200) })
+        .catch(e => { success(req, res, e.detail, 200) })
 });
-router.put('/update', async function (req, res) {
+router.patch('/update', async function (req, res) {
     const client = await getConnection();
 
     let id = req.query.id;
@@ -65,8 +64,8 @@ router.put('/update', async function (req, res) {
 
     };
     client.query(query_request)
-        .then(r => { response.success(req, res, r, 200) })
-        .catch(e => { response.success(req, res, e, 200) });
+        .then(r => { success(req, res, r, 200) })
+        .catch(e => { success(req, res, e, 200) });
 });
 
 
@@ -74,4 +73,4 @@ router.put('/update', async function (req, res) {
 
 
 
-module.exports = router;
+export default router;

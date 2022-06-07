@@ -1,14 +1,14 @@
-const express = require('express');
+import express from 'express';
 const app = express();
 
-const config = require('../config.js');
-const user = require('./components/user/network');
+import { api } from '../config.js';
+//import user from './components/user/network';
 
 //Routers
-app.use('/api/user', user);
+//app.use('/api/user', user);
 
-app.listen(config.api.port, () => {
-    console.log(`Servidor corriendo en el puerto => ${config.api.port}`);
+app.listen(api.port, () => {
+    console.log(`Servidor corriendo en el puerto => ${api.port}`);
 });
 
 console.log('');
