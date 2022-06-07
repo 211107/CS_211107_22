@@ -1,4 +1,5 @@
-import { Pool } from 'pg';
+import pkg from 'pg';
+const {Pool} = pkg;
 import { db } from '../config.js';
 
 async function getConnection() {
@@ -13,4 +14,4 @@ async function getConnection() {
     return pool;
 }
 
-export default { getConnection };
+export default getConnection ;

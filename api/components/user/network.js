@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import { success } from '../../../network/response';
-import { getConnection } from '../../../model/db.js';
-import { request } from 'express';
+import { success } from '../../../network/response.js';
+import  getConnection  from '../../../model/db.js';
+
 
 const router = Router();
 
