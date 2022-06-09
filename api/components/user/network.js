@@ -1,6 +1,9 @@
 import { Router } from 'express';
 import { success } from '../../../network/response.js';
-import  getConnection  from '../../../model/db.js';
+import { getUser } from '../../../model/Users.js';
+import { getData } from '../../../model/db.js';
+
+
 
 
 const router = Router();
@@ -67,6 +70,58 @@ router.patch('/update', async function (req, res) {
         .then(r => { success(req, res, r, 200) })
         .catch(e => { success(req, res, e, 200) });
 });
+router.get('/all_users', async function (req, res) {
+    getUser.findAll({ atributes: ['username', 'email', 'password', 'phone_number'] })
+        .then(users => {
+            res.send(users)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+
+});
+router.post('/registroUser', async function (req, res) {
+    getUser.create({
+        id: req.query.id,
+        username: req.query.username,
+        email: req.query.email,
+        password: req.query.password,
+        phone_number: req.query.phone_number
+
+    }).then(users => {
+        res.send(users)
+    })
+
+});
+router.put('/actualiza', async function (req, res) {
+    let id = req.query.id
+    let nuevosDatos = req.query
+    getUser.findOne({ where: { id: id } })
+        .then(users => {
+
+            users.update(nuevosDatos)
+        })
+});
+
+router.delete('/eli', async function (req, res) {
+    let id = req.query.id;
+    console.log("id:" + req.query.id);
+    getUser.destroy({
+        where: {
+            id: id
+        }
+    })
+        .then(() => {
+            res.send('persona eliminaada')
+
+        })
+});
+
+
+
+
+
+
 
 
 
