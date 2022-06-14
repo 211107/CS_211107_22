@@ -6,6 +6,7 @@ import { getData } from '../../../model/db.js';
 
 
 
+
 const router = Router();
 
 router.get('/success1', async function (req, res) {
@@ -71,7 +72,7 @@ router.patch('/update', async function (req, res) {
         .catch(e => { success(req, res, e, 200) });
 });
 router.get('/all_users', async function (req, res) {
-    getUser.findAll({ atributes: ['username', 'email', 'password', 'phone_number'] })
+    getUser.findAll({ atributes: ['name'] })
         .then(users => {
             res.send(users)
         })
@@ -82,11 +83,11 @@ router.get('/all_users', async function (req, res) {
 });
 router.post('/registroUser', async function (req, res) {
     getUser.create({
-        id: req.query.id,
-        username: req.query.username,
-        email: req.query.email,
-        password: req.query.password,
-        phone_number: req.query.phone_number
+       // id: req.query.id,
+        name: req.query.username,
+        //email: req.query.email,
+        //password: req.query.password,
+        //phone_number: req.query.phone_number
 
     }).then(users => {
         res.send(users)
