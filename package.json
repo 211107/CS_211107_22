@@ -1,23 +1,36 @@
 {
-  "name": "tarea1.1",
+  "name": "cs_2022",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "inicio": "node ./api/index.js",
-    "dev": "nodemon ./api/index.js"
+    "start:dev": "cross-env NODE_ENV=development nodemon app.js",
+    "start:test": "cross-env NODE_ENV=test nodemon app.js",
+    "start:prod": "cross-env NODE_ENV=production nodemon app.js",
+    "sequelize": "dotenv sequelize"
   },
-  "author": "Esmeralda",
+  "author": "Esmeralda Guadalupe Morales Leon",
   "license": "ISC",
   "dependencies": {
+    "@hapi/joi": "^17.1.1",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.0",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
-    "nodemon": "^2.0.16",
+    "jsonwebtoken": "^8.5.1",
     "pg": "^8.7.3",
     "pg-hstore": "^2.3.4",
-    "sequelize": "^6.20.1",
-    "sockets": "^0.4.2"
+    "sequelize": "^6.19.2",
+    "swagger-jsdoc": "^6.2.1",
+    "swagger-ui-express": "^4.4.0"
+  },
+  "engines": {
+    "node": "16.14.0"
+  },
+  "devDependencies": {
+    "babel-register": "^6.26.0",
+    "cross-env": "^7.0.3",
+    "nodemon": "^2.0.16"
   }
 }
